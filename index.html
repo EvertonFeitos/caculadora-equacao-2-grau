@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+      <title>Caculadora função Quadratica</title>
+      <style>
+         input{
+         max-width: 130px;
+         border: 1px solid rgb(197, 37, 37);
+         border-radius: 10px;
+         height: 50px;
+         box-shadow: 5px 5px rgb(207, 207, 207);
+         font-size: 20px;
+         }
+         .espacamento{
+         padding: 10% 0;
+         }
+         input::placeholder{
+         color: red;
+         font-weight: bold;
+         text-align: center;
+         }
+         input:focus::-webkit-input-placeholder {
+         color: transparent;
+         }
+         input:focus:-moz-placeholder { /* Firefox 18- */
+         color: transparent;  
+         }
+         input:focus::-moz-placeholder {  /* Firefox 19+ */
+         color: transparent;  
+         }
+         input:focus:-ms-input-placeholder {  
+         color: transparent;  
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container text-center py-5">
+         <div class="form">
+            <div class="row espacamento">
+               <div class="col-12">
+                  <div id="alerta"></div>
+               </div>
+               <div class="offset-md-3 col-md-6 py-3">
+                  <input type="text" name="" id="delta" placeholder="DELTA" disabled="true">     
+               </div>
+               <div class="offset-md-3 col-md-6 py-3">
+                  <input type="text" name="" id="X1" placeholder="X1" disabled="true">
+                  <input type="text" name="" id="X2" placeholder="X2" disabled="true">
+               </div>
+               <div class="offset-md-3 col-md-6 py-3">
+                  <input type="text" name="" id="A" placeholder="A">
+                  <input type="text" name="" id="B" placeholder="B">
+                  <input type="text" name="" id="C" placeholder="C">
+               </div>
+               <div class="offset-md-3 col-md-6 py-3">
+                  <input type="submit" value="Enviar" onclick="calcular()">
+                  <input type="submit" value="Limpar" onclick="limpar()">
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+
+         var textoAlerta = document.getElementById('alerta');
+         
+         function calcular(){
+                 
+          var A = parseFloat(document.getElementById('A').value);
+          console.log(A);
+          
+          var B = document.getElementById('B').value;
+          console.log(B);
+          
+          var C = document.getElementById('C').value;
+          console.log(C);
+ 
+          var delta = Math.pow(B, 2) - 4*(A)*(C);
+          console.log(delta);
+
+         
+         if (A === 0) {
+            textoAlerta.innerHTML = "<h2>" + "o valor do coeficiente <strong>A</strong> nunca é igual a 0, caso isso ocorra, a equação deixa de ser do 2º grau." + "</h2>";
+            
+         } else {
+
+            if (delta < 0) {
+           
+           document.getElementById('delta').value = delta;
+           textoAlerta.innerHTML = "<h2>" + "Raiz de quadrada de DELTA é negativa, não sendo possivel representa-la em numeros reais." + "</h2>";    
+           
+         } else {
+         
+           textoAlerta.innerHTML = "";
+         
+           var X1 = (-B + Math.sqrt(delta)) / (2 * A);
+           console.log(X1);
+           document.getElementById('X1').value = X1;
+         
+           var X2 = (-B - Math.sqrt(delta)) / (2 * A);
+           console.log(X2);
+           document.getElementById('X2').value = X2;
+           
+           if (B == 0 || C == 0) {
+            document.getElementById('delta').value = "";            
+           } else{
+            document.getElementById('delta').value = delta;
+           }
+         
+         }
+            
+         }
+         
+                
+
+        }
+         
+         function limpar(){
+
+         document.getElementById('X1').value = "";
+         document.getElementById('X2').value = "";
+         document.getElementById('A').value = "";
+         document.getElementById('B').value = "";
+         document.getElementById('C').value = "";
+         document.getElementById('delta').value = "";
+         textoAlerta.innerHTML = "";
+         console.log(textoAlerta);
+         
+         }
+         
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+   </body>
+</html>
