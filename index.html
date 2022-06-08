@@ -67,8 +67,10 @@
 
          var textoAlerta = document.getElementById('alerta');
          
+         //função pegar valores digitados pelo usuario executar soma.
          function calcular(){
                  
+         //variaveis
           var A = parseFloat(document.getElementById('A').value);
           console.log(A);
           
@@ -81,12 +83,14 @@
           var delta = Math.pow(B, 2) - 4*(A)*(C);
           console.log(delta);
 
-         
+         //validar se coeficiente A != 0.
          if (A === 0) {
             textoAlerta.innerHTML = "<h2>" + "o valor do coeficiente <strong>A</strong> nunca é igual a 0, caso isso ocorra, a equação deixa de ser do 2º grau." + "</h2>";
             
          } else {
 
+            
+         //validar se DELTA não é um numero negativo, e se for encerrar a conta.
             if (delta < 0) {
            
            document.getElementById('delta').value = delta;
@@ -103,7 +107,9 @@
            var X2 = (-B - Math.sqrt(delta)) / (2 * A);
            console.log(X2);
            document.getElementById('X2').value = X2;
+
            
+          //mostrar DELTA somente se for uma equação do 2 grau completa. 
            if (B == 0 || C == 0) {
             document.getElementById('delta').value = "";            
            } else{
@@ -117,6 +123,8 @@
                 
 
         }
+
+        //função botão limpar
          
          function limpar(){
 
